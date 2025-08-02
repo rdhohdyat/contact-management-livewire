@@ -82,6 +82,14 @@
         </div>
     </div>
 
+    @php
+        $faqList = [
+            ['title' => 'Apa itu Patron?', 'content' => 'Patron adalah pasar tradisional online.'],
+            ['title' => 'Bagaimana cara daftar?', 'content' => 'Klik tombol daftar di pojok kanan atas.'],
+            ['title' => 'Apakah gratis?', 'content' => 'Ya, sepenuhnya gratis.'],
+        ];
+    @endphp
+
     <div>
         <h1 class="text-xl text-white font-bold mb-4 mt-8">Tabs</h1>
         <div>
@@ -113,17 +121,11 @@
     <div>
         <h1 class="text-xl text-white font-bold mb-4 mt-8">Accordion</h1>
         <div class="space-y-4">
-            <x-accordion title="Apa itu Patron?">
-                Patron adalah platform pasar tradisional online yang menghubungkan pembeli dan penjual lokal.
-            </x-accordion>
-
-            <x-accordion title="Bagaimana cara membuat toko?">
-                Anda dapat membuat toko melalui halaman dashboard setelah login sebagai penjual.
-            </x-accordion>
-
-            <x-accordion title="Apakah gratis?">
-                Ya, penggunaan dasar Patron sepenuhnya gratis untuk semua pengguna.
-            </x-accordion>
+            @foreach ($faqList as $faq)
+                <x-accordion title="{{ $faq['title'] }}">
+                    {{ $faq['content'] }}
+                </x-accordion>
+            @endforeach
         </div>
     </div>
 
