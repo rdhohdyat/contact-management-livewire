@@ -24,7 +24,7 @@ $alignmentClasses = [
         x-transition:leave="transition ease-in duration-75"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
-        class="absolute z-50 mt-2 w-40 rounded-md shadow-lg bg-gray-800 bordre border-gray-700 focus:outline-none"
+        class="absolute z-50 mt-2 w-40 rounded-md shadow-lg bg-gray-800 border border-gray-700 focus:outline-none"
         :class="'{{ $alignmentClasses }}'"
         style="display: none;"
     >

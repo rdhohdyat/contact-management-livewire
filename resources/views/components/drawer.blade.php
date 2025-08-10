@@ -51,27 +51,24 @@
             default: return 'transform translate-x-full';
         }
     }
-}"
-@keydown.escape.window="isOpen && closeDrawer()"
-@open-drawer.window="openDrawer($event.detail.direction, $event.detail.title)"
->
+}" @keydown.escape.window="isOpen && closeDrawer()"
+    @open-drawer.window="openDrawer($event.detail.direction, $event.detail.title)">
 
     <!-- Backdrop -->
     <div x-show="isOpen" x-cloak x-transition.opacity.duration.300
-        class="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
-        @click="closeDrawer()">
+        class="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm" @click="closeDrawer()">
     </div>
 
     <!-- Drawer -->
     <div x-show="isOpen" x-cloak
-        :class="getDrawerClasses() + ' z-50 transform transition-transform duration-300 ease-out ' + transformClass"
-        class="w-full sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl"
+        :class="getDrawerClasses() + ' z-50 transform transition-transform duration-300 ease-out ' + transformClass + (drawerDirection === 'top' || drawerDirection === 'bottom' ? ' w-full' : ' w-full sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl')"
         :style="isVisible ? 'transform: translateX(0) translateY(0);' : ''">
 
         <!-- Header -->
         <div class="flex items-center justify-between p-4 pb-3 border-b border-gray-700 sticky top-0 z-10 bg-gray-800">
             <h3 class="text-lg font-semibold text-white" x-text="drawerTitle || 'Drawer'"></h3>
-            <button @click="closeDrawer()" class="text-gray-400 hover:text-gray-300 hover:bg-gray-800 rounded w-8 h-8 flex items-center justify-center">
+            <button @click="closeDrawer()"
+                class="text-gray-400 hover:text-gray-300 hover:bg-gray-800 rounded w-8 h-8 flex items-center justify-center">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -86,7 +83,9 @@
 </div>
 
 <style>
-    [x-cloak] { display: none !important; }
+    [x-cloak] {
+        display: none !important;
+    }
 
     .drawer-transition {
         will-change: transform;
@@ -98,12 +97,19 @@
         scroll-behavior: smooth;
     }
 
-    .drawer-scroll::-webkit-scrollbar { width: 6px; }
-    .drawer-scroll::-webkit-scrollbar-track { background: #374151; }
+    .drawer-scroll::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .drawer-scroll::-webkit-scrollbar-track {
+        background: #374151;
+    }
+
     .drawer-scroll::-webkit-scrollbar-thumb {
         background: #6b7280;
         border-radius: 3px;
     }
+
     .drawer-scroll::-webkit-scrollbar-thumb:hover {
         background: #9ca3af;
     }
